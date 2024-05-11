@@ -61,21 +61,21 @@ router.post("/users/manage", ensureAuthenticated, ensureAdmin, createUserControl
 
 router.post("/users/auth", authenticateController.handle);
 
-router.get("/rankings/:region", getRankings);
+router.get("/rankings/:region", ensureAuthenticated, getRankings);
 // Get All Players
-router.get("/players", getPlayers);
+router.get("/players", ensureAuthenticated, getPlayers);
 // Get All Ongoing Events
-router.get("/events",getEvents);
+router.get("/events", ensureAuthenticated, getEvents);
 // Get Specific Event
-router.get("/events/:url", getEvent);
+router.get("/events/:url", ensureAuthenticated, getEvent);
 // Get Live Score
-router.get("/matches/live", getLiveScore);
+router.get("/matches/live", ensureAuthenticated, getLiveScore);
 // Get Upcoming matches
-router.get("/matches/upcoming", getUpcomingMatches);
+router.get("/matches/upcoming", ensureAuthenticated, getUpcomingMatches);
 // Get Completed Match Results
-router.get("/matches/results", getMatchResults);
+router.get("/matches/results", ensureAuthenticated, getMatchResults);
 // Get Specific Match Info
-router.get("/matches/:url", getMatch);
+router.get("/matches/:url", ensureAuthenticated, getMatch);
 
 /**
  * @openapi
