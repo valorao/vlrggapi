@@ -53,29 +53,29 @@ async function scrapePlayers() {
     $(item)
         .find("#wrapper > div.col-container > div > div > div > table > tbody > tr")
         .each((index, element) => {
-        const tds = $(element).find("td ");
-        playersInfo.players.push({
-            player_name: $(tds[0]).find("div > div").eq(0).text().trim(),
-            player_link: `www.vlr.gg` + $(tds[0]).find("a").attr("href"),
-            player_team_initials: $(tds[0]).find("div > div").eq(1).text().trim(),
-            player_country_initials: $(tds[0]).find("i").attr("class").slice(-2),
-            rounds_played: $(tds[2]).text().trim(),
-            rating: $(tds[3]).text().trim(),
-            average_combat_score: $(tds[4]).text().trim(),
-            kills_deaths: $(tds[5]).text().trim(),
-            kill_assist_trade_survive_percentage: $(tds[6]).text().trim(),
-            average_damage_per_round: $(tds[7]).text().trim(),
-            kills_per_round: $(tds[8]).text().trim(),
-            assists_per_round: $(tds[9]).text().trim(),
-            first_kills_per_round: $(tds[10]).text().trim(),
-            first_deaths_per_round: $(tds[11]).text().trim(),
-            headshot_percentage: $(tds[12]).text().trim(),
-            clutch_success_percentage: $(tds[13]).text().trim(),
-            max_kills_in_single_map: $(tds[15]).text().trim(),
-            kills: $(tds[16]).text().trim(),
-            deaths: $(tds[17]).text().trim(),
+            const tds = $(element).find("td ");
+            playersInfo.players.push({
+                player_name: $(tds[0]).find("div > div").eq(0).text().trim(),
+                player_link: `www.vlr.gg` + $(tds[0]).find("a").attr("href"),
+                player_team_initials: $(tds[0]).find("div > div").eq(1).text().trim(),
+                player_country_initials: $(tds[0]).find("i").attr("class").slice(-2),
+                rounds_played: $(tds[2]).text().trim(),
+                rating: $(tds[3]).text().trim(),
+                average_combat_score: $(tds[4]).text().trim(),
+                kills_deaths: $(tds[5]).text().trim(),
+                kill_assist_trade_survive_percentage: $(tds[6]).text().trim(),
+                average_damage_per_round: $(tds[7]).text().trim(),
+                kills_per_round: $(tds[8]).text().trim(),
+                assists_per_round: $(tds[9]).text().trim(),
+                first_kills_per_round: $(tds[10]).text().trim(),
+                first_deaths_per_round: $(tds[11]).text().trim(),
+                headshot_percentage: $(tds[12]).text().trim(),
+                clutch_success_percentage: $(tds[13]).text().trim(),
+                max_kills_in_single_map: $(tds[15]).text().trim(),
+                kills: $(tds[16]).text().trim(),
+                deaths: $(tds[17]).text().trim(),
+            });
         });
-    });
     return playersInfo;
 }
 async function scrapeTeams(region) {
@@ -88,37 +88,37 @@ async function scrapeTeams(region) {
     $(item)
         .find("#wrapper > div.col-container > div > div.mod-scroll > div.wf-card")
         .each((index, element) => {
-        teamsInfo.teams.push({
-            team_name: $(element).find("a.rank-item-team").attr("data-sort-value"),
-            team_logo: $(element).find("a.rank-item-team img").attr("src"),
-            team_url: `www.vlr.gg` + $(element).find("a.rank-item-team").attr("href"),
-            team_rank: $(element).find("div.rank-item-rank-num").text().trim(),
-            rating_score: $(element)
-                .find("div.rank-item-rating")
-                .eq(0)
-                .text()
-                .trim(),
-            recent_match: {
-                match_url: `www.vlr.gg` + $(element).find("a.rank-item-last").attr("href"),
-                match_time: $(element)
-                    .find("a.rank-item-last div")
+            teamsInfo.teams.push({
+                team_name: $(element).find("a.rank-item-team").attr("data-sort-value"),
+                team_logo: $(element).find("a.rank-item-team img").attr("src"),
+                team_url: `www.vlr.gg` + $(element).find("a.rank-item-team").attr("href"),
+                team_rank: $(element).find("div.rank-item-rank-num").text().trim(),
+                rating_score: $(element)
+                    .find("div.rank-item-rating")
                     .eq(0)
                     .text()
                     .trim(),
-                opponent_team_name: $(element)
-                    .find("a.rank-item-last div span")
-                    .eq(1)
-                    .text()
-                    .trim(),
-                opponent_team_logo_url: $(element)
-                    .find("a.rank-item-last div img")
-                    .attr("src"),
-            },
-            win_streak: $(element).find("div.rank-item-streak span").text().trim(),
-            record: $(element).find("div.rank-item-record").eq(0).text().trim(),
-            total_winnings: $(element).find("div.rank-item-earnings").text().trim(),
+                recent_match: {
+                    match_url: `www.vlr.gg` + $(element).find("a.rank-item-last").attr("href"),
+                    match_time: $(element)
+                        .find("a.rank-item-last div")
+                        .eq(0)
+                        .text()
+                        .trim(),
+                    opponent_team_name: $(element)
+                        .find("a.rank-item-last div span")
+                        .eq(1)
+                        .text()
+                        .trim(),
+                    opponent_team_logo_url: $(element)
+                        .find("a.rank-item-last div img")
+                        .attr("src"),
+                },
+                win_streak: $(element).find("div.rank-item-streak span").text().trim(),
+                record: $(element).find("div.rank-item-record").eq(0).text().trim(),
+                total_winnings: $(element).find("div.rank-item-earnings").text().trim(),
+            });
         });
-    });
     if (teamsInfo.teams.length > 0) {
         return teamsInfo;
     }
@@ -136,29 +136,29 @@ async function scrapeEvents() {
     $(item)
         .find("#wrapper > div.col-container > div > div.events-container > div:nth-child(1) > a")
         .each((index, element) => {
-        eventsInfo.events.push({
-            event_name: $(element).find("div.event-item-title").text().trim(),
-            event_logo: $(element).find("div.event-item-thumb img").attr("src"),
-            event_url: "www.vlr.gg" + $(element).attr("href"),
-            prize_pool: $(element)
-                .find("div.mod-prize")
-                .clone()
-                .children()
-                .remove()
-                .end()
-                .text()
-                .trim(),
-            dates: $(element)
-                .find("div.mod-dates")
-                .clone()
-                .children()
-                .remove()
-                .end()
-                .text()
-                .trim(),
-            region: $(element).find("div.mod-location i").attr("class").slice(-2),
+            eventsInfo.events.push({
+                event_name: $(element).find("div.event-item-title").text().trim(),
+                event_logo: $(element).find("div.event-item-thumb img").attr("src"),
+                event_url: "www.vlr.gg" + $(element).attr("href"),
+                prize_pool: $(element)
+                    .find("div.mod-prize")
+                    .clone()
+                    .children()
+                    .remove()
+                    .end()
+                    .text()
+                    .trim(),
+                dates: $(element)
+                    .find("div.mod-dates")
+                    .clone()
+                    .children()
+                    .remove()
+                    .end()
+                    .text()
+                    .trim(),
+                region: $(element).find("div.mod-location i").attr("class").slice(-2),
+            });
         });
-    });
     if (eventsInfo.events.length > 0) {
         return eventsInfo;
     }
@@ -201,59 +201,59 @@ async function scrapeEvent(event_url) {
     $(item)
         .find("#wrapper > div.col-container > div > div.event-container > div.event-content > div.event-teams-container div.event-team")
         .each((index, element) => {
-        eventInfo.teams.push({
-            team_name: $(element).find("a.event-team-name").text().trim(),
-            team_logo_url: $(element)
-                .find("div.event-team-players img")
-                .attr("src"),
+            eventInfo.teams.push({
+                team_name: $(element).find("a.event-team-name").text().trim(),
+                team_logo_url: $(element)
+                    .find("div.event-team-players img")
+                    .attr("src"),
+            });
         });
-    });
     // Populate upsoming matches
     $(item)
         .find("#wrapper > div.col-container > div > div.event-container > div.event-sidebar > div > div:nth-child(2) > a")
         .each((index, element) => {
-        eventInfo.upcoming_matches.push({
-            team_one_name: $(element)
-                .find("div.event-sidebar-matches-team div.name span")
-                .eq(0)
-                .text()
-                .trim(),
-            team_two_name: $(element)
-                .find("div.event-sidebar-matches-team div.name span")
-                .eq(1)
-                .text()
-                .trim(),
-            ETA: $(element).find("div.eta").text().trim(),
+            eventInfo.upcoming_matches.push({
+                team_one_name: $(element)
+                    .find("div.event-sidebar-matches-team div.name span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                team_two_name: $(element)
+                    .find("div.event-sidebar-matches-team div.name span")
+                    .eq(1)
+                    .text()
+                    .trim(),
+                ETA: $(element).find("div.eta").text().trim(),
+            });
         });
-    });
     // Populate latest results
     $(item)
         .find("#wrapper > div.col-container > div > div.event-container > div.event-sidebar > div > div:nth-child(5) > a")
         .each((index, element) => {
-        eventInfo.latest_results.push({
-            team_one_name: $(element)
-                .find("div.event-sidebar-matches-team div.name span")
-                .eq(0)
-                .text()
-                .trim(),
-            team_one_score: $(element)
-                .find("div.event-sidebar-matches-team div.score")
-                .eq(0)
-                .text()
-                .trim(),
-            team_two_name: $(element)
-                .find("div.event-sidebar-matches-team div.name span")
-                .eq(1)
-                .text()
-                .trim(),
-            team_two_score: $(element)
-                .find("div.event-sidebar-matches-team div.score")
-                .eq(1)
-                .text()
-                .trim(),
-            ETA: $(element).find("div.eta").text().trim(),
+            eventInfo.latest_results.push({
+                team_one_name: $(element)
+                    .find("div.event-sidebar-matches-team div.name span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                team_one_score: $(element)
+                    .find("div.event-sidebar-matches-team div.score")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                team_two_name: $(element)
+                    .find("div.event-sidebar-matches-team div.name span")
+                    .eq(1)
+                    .text()
+                    .trim(),
+                team_two_score: $(element)
+                    .find("div.event-sidebar-matches-team div.score")
+                    .eq(1)
+                    .text()
+                    .trim(),
+                ETA: $(element).find("div.eta").text().trim(),
+            });
         });
-    });
     return eventInfo;
 }
 async function scrapeUpcomingMatches() {
@@ -266,35 +266,35 @@ async function scrapeUpcomingMatches() {
     $(item)
         .find("#wrapper > div.col-container div div.wf-card")
         .each((index, element) => {
-        $(element)
-            .find("a.match-item")
-            .each((ind, ele) => {
-            upcomingMatches.matches.push({
-                team_one_name: $(ele)
-                    .find("div.match-item-vs-team-name")
-                    .eq(0)
-                    .text()
-                    .trim(),
-                team_two_name: $(ele)
-                    .find("div.match-item-vs-team-name")
-                    .eq(1)
-                    .text()
-                    .trim(),
-                match_url: `www.vlr.gg` + $(ele).attr("href"),
-                event_name: $(ele)
-                    .find("div.match-item-event")
-                    .clone()
-                    .children()
-                    .remove()
-                    .end()
-                    .text()
-                    .trim(),
-                event_icon_url: $(ele).find("div.match-item-icon img").attr("src"),
-                match_time: $(ele).find("div.match-item-time").text().trim(),
-                eta: $(ele).find("div.ml-eta").text().trim(),
-            });
+            $(element)
+                .find("a.match-item")
+                .each((ind, ele) => {
+                    upcomingMatches.matches.push({
+                        team_one_name: $(ele)
+                            .find("div.match-item-vs-team-name")
+                            .eq(0)
+                            .text()
+                            .trim(),
+                        team_two_name: $(ele)
+                            .find("div.match-item-vs-team-name")
+                            .eq(1)
+                            .text()
+                            .trim(),
+                        match_url: `www.vlr.gg` + $(ele).attr("href"),
+                        event_name: $(ele)
+                            .find("div.match-item-event")
+                            .clone()
+                            .children()
+                            .remove()
+                            .end()
+                            .text()
+                            .trim(),
+                        event_icon_url: $(ele).find("div.match-item-icon img").attr("src"),
+                        match_time: $(ele).find("div.match-item-time").text().trim(),
+                        eta: $(ele).find("div.ml-eta").text().trim(),
+                    });
+                });
         });
-    });
     return upcomingMatches;
 }
 async function scrapeMatchResults() {
@@ -307,45 +307,45 @@ async function scrapeMatchResults() {
     $(item)
         .find("#wrapper > div.col-container div div.wf-card")
         .each((index, element) => {
-        $(element)
-            .find("a.match-item")
-            .each((ind, ele) => {
-            matchResults.matches.push({
-                team_one_name: $(ele)
-                    .find("div.match-item-vs-team-name")
-                    .eq(0)
-                    .text()
-                    .trim(),
-                team_two_name: $(ele)
-                    .find("div.match-item-vs-team-name")
-                    .eq(1)
-                    .text()
-                    .trim(),
-                team_one_score: $(ele)
-                    .find("div.match-item-vs-team-score")
-                    .eq(0)
-                    .text()
-                    .trim(),
-                team_two_score: $(ele)
-                    .find("div.match-item-vs-team-score")
-                    .eq(1)
-                    .text()
-                    .trim(),
-                match_url: `www.vlr.gg` + $(ele).attr("href"),
-                event_name: $(ele)
-                    .find("div.match-item-event")
-                    .clone()
-                    .children()
-                    .remove()
-                    .end()
-                    .text()
-                    .trim(),
-                event_icon_url: $(ele).find("div.match-item-icon img").attr("src"),
-                match_time: $(ele).find("div.match-item-time").text().trim(),
-                eta: $(ele).find("div.ml-eta").text().trim(),
-            });
+            $(element)
+                .find("a.match-item")
+                .each((ind, ele) => {
+                    matchResults.matches.push({
+                        team_one_name: $(ele)
+                            .find("div.match-item-vs-team-name")
+                            .eq(0)
+                            .text()
+                            .trim(),
+                        team_two_name: $(ele)
+                            .find("div.match-item-vs-team-name")
+                            .eq(1)
+                            .text()
+                            .trim(),
+                        team_one_score: $(ele)
+                            .find("div.match-item-vs-team-score")
+                            .eq(0)
+                            .text()
+                            .trim(),
+                        team_two_score: $(ele)
+                            .find("div.match-item-vs-team-score")
+                            .eq(1)
+                            .text()
+                            .trim(),
+                        match_url: `www.vlr.gg` + $(ele).attr("href"),
+                        event_name: $(ele)
+                            .find("div.match-item-event")
+                            .clone()
+                            .children()
+                            .remove()
+                            .end()
+                            .text()
+                            .trim(),
+                        event_icon_url: $(ele).find("div.match-item-icon img").attr("src"),
+                        match_time: $(ele).find("div.match-item-time").text().trim(),
+                        eta: $(ele).find("div.ml-eta").text().trim(),
+                    });
+                });
         });
-    });
     return matchResults;
 }
 async function scrapeMatch(match_url) {
@@ -393,159 +393,173 @@ async function scrapeMatch(match_url) {
     $(item)
         .find("#wrapper > div.col-container > div.col.mod-3 > div:nth-child(6) > div > div.vm-stats-container > div.vm-stats-game.mod-active > div:nth-child(2) > div:nth-child(1) > table > tbody > tr")
         .each((index, element) => {
-        const tds = $(element).find("td ");
-        matchInfo.team_one_players.push({
-            player_name: $(tds[0]).find("div.text-of").eq(0).text().trim(),
-            player_link: `www.vlr.gg` + $(tds[0]).find("a").attr("href"),
-            player_team_initials: $(tds[0]).find("div.ge-text-light").text().trim(),
-            player_country_initials: $(tds[0]).find("i").attr("class").slice(-2),
-            rating: $(tds[2]).find("span span").eq(0).text().trim(),
-            average_combat_score: $(tds[3]).find("span span").eq(0).text().trim(),
-            kills: $(tds[4]).find("span span").eq(0).text().trim(),
-            deaths: $(tds[5]).find("span span.mod-both").eq(0).text().trim(),
-            assists: $(tds[6]).find("span span").eq(0).text().trim(),
-            kills_deaths: $(tds[7]).find("span span").eq(0).text().trim(),
-            kill_assist_trade_survive_percentage: $(tds[8])
-                .find("span span")
-                .eq(0)
-                .text()
-                .trim(),
-            average_damage_per_round: $(tds[9])
-                .find("span span")
-                .eq(0)
-                .text()
-                .trim(),
-            headshot_percentage: $(tds[10]).find("span span").eq(0).text().trim(),
-            first_kills: $(tds[11]).find("span span").eq(0).text().trim(),
-            first_deaths: $(tds[12]).find("span span").eq(0).text().trim(),
-            first_kills_first_deaths: $(tds[13])
-                .find("span span")
-                .eq(0)
-                .text()
-                .trim(),
+            const tds = $(element).find("td ");
+            matchInfo.team_one_players.push({
+                player_name: $(tds[0]).find("div.text-of").eq(0).text().trim(),
+                player_link: `www.vlr.gg` + $(tds[0]).find("a").attr("href"),
+                player_team_initials: $(tds[0]).find("div.ge-text-light").text().trim(),
+                player_country_initials: $(tds[0]).find("i").attr("class").slice(-2),
+                rating: $(tds[2]).find("span span").eq(0).text().trim(),
+                average_combat_score: $(tds[3]).find("span span").eq(0).text().trim(),
+                kills: $(tds[4]).find("span span").eq(0).text().trim(),
+                deaths: $(tds[5]).find("span span.mod-both").eq(0).text().trim(),
+                assists: $(tds[6]).find("span span").eq(0).text().trim(),
+                kills_deaths: $(tds[7]).find("span span").eq(0).text().trim(),
+                kill_assist_trade_survive_percentage: $(tds[8])
+                    .find("span span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                average_damage_per_round: $(tds[9])
+                    .find("span span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                headshot_percentage: $(tds[10]).find("span span").eq(0).text().trim(),
+                first_kills: $(tds[11]).find("span span").eq(0).text().trim(),
+                first_deaths: $(tds[12]).find("span span").eq(0).text().trim(),
+                first_kills_first_deaths: $(tds[13])
+                    .find("span span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+            });
         });
-    });
     //   Team two Players
     $(item)
         .find("#wrapper > div.col-container > div.col.mod-3 > div:nth-child(6) > div > div.vm-stats-container > div.vm-stats-game.mod-active > div:nth-child(2) > div:nth-child(2) > table > tbody > tr")
         .each((index, element) => {
-        const tds = $(element).find("td ");
-        matchInfo.team_two_players.push({
-            player_name: $(tds[0]).find("div.text-of").eq(0).text().trim(),
-            player_link: `www.vlr.gg` + $(tds[0]).find("a").attr("href"),
-            player_team_initials: $(tds[0]).find("div.ge-text-light").text().trim(),
-            player_country_initials: $(tds[0]).find("i").attr("class").slice(-2),
-            rating: $(tds[2]).find("span span").eq(0).text().trim(),
-            average_combat_score: $(tds[3]).find("span span").eq(0).text().trim(),
-            kills: $(tds[4]).find("span span").eq(0).text().trim(),
-            deaths: $(tds[5]).find("span span.mod-both").eq(0).text().trim(),
-            assists: $(tds[6]).find("span span").eq(0).text().trim(),
-            kills_deaths: $(tds[7]).find("span span").eq(0).text().trim(),
-            kill_assist_trade_survive_percentage: $(tds[8])
-                .find("span span")
-                .eq(0)
-                .text()
-                .trim(),
-            average_damage_per_round: $(tds[9])
-                .find("span span")
-                .eq(0)
-                .text()
-                .trim(),
-            headshot_percentage: $(tds[10]).find("span span").eq(0).text().trim(),
-            first_kills: $(tds[11]).find("span span").eq(0).text().trim(),
-            first_deaths: $(tds[12]).find("span span").eq(0).text().trim(),
-            first_kills_first_deaths: $(tds[13])
-                .find("span span")
-                .eq(0)
-                .text()
-                .trim(),
+            const tds = $(element).find("td ");
+            matchInfo.team_two_players.push({
+                player_name: $(tds[0]).find("div.text-of").eq(0).text().trim(),
+                player_link: `www.vlr.gg` + $(tds[0]).find("a").attr("href"),
+                player_team_initials: $(tds[0]).find("div.ge-text-light").text().trim(),
+                player_country_initials: $(tds[0]).find("i").attr("class").slice(-2),
+                rating: $(tds[2]).find("span span").eq(0).text().trim(),
+                average_combat_score: $(tds[3]).find("span span").eq(0).text().trim(),
+                kills: $(tds[4]).find("span span").eq(0).text().trim(),
+                deaths: $(tds[5]).find("span span.mod-both").eq(0).text().trim(),
+                assists: $(tds[6]).find("span span").eq(0).text().trim(),
+                kills_deaths: $(tds[7]).find("span span").eq(0).text().trim(),
+                kill_assist_trade_survive_percentage: $(tds[8])
+                    .find("span span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                average_damage_per_round: $(tds[9])
+                    .find("span span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+                headshot_percentage: $(tds[10]).find("span span").eq(0).text().trim(),
+                first_kills: $(tds[11]).find("span span").eq(0).text().trim(),
+                first_deaths: $(tds[12]).find("span span").eq(0).text().trim(),
+                first_kills_first_deaths: $(tds[13])
+                    .find("span span")
+                    .eq(0)
+                    .text()
+                    .trim(),
+            });
         });
-    });
     return matchInfo;
 }
 async function scrapeLiveScore() {
     const url = "https://www.vlr.gg";
-  
+
     try {
-      const resp = await axios.get(url);
-      const $ = cheerio.load(resp.data);
-  
-      // Extract the relevant data
-      const firstItem = $(".js-home-matches-upcoming a.wf-module-item")[0];
-      let result = [];
-  
-      if (firstItem) { // Ensure first item exists
-        const teams = [];
-        const flags = [];
-        const scores = [];
-        const roundTexts = [];
-  
-        $(firstItem).find(".h-match-team").each((index, team) => {
-          teams.push($(team).find(".h-match-team-name").text().trim());
-          flags.push(
-            $(team)
-                .find(".flag")
-                .attr("class")
-                .replace(" mod-", "") 
-                .replace("mod-", "")
-                .replace(" ","_")
-                .replace("16", "")
-          );
-          scores.push($(team).find(".h-match-team-score").text().trim());
-  
-          const roundInfoCt = $(team).find(".h-match-team-rounds .mod-ct");
-          const roundInfoT = $(team).find(".h-match-team-rounds .mod-t");
-          const roundTextCt = roundInfoCt.length ? roundInfoCt.text().trim() : "N/A";
-          const roundTextT = roundInfoT.length ? roundInfoT.text().trim() : "N/A";
-          roundTexts.push({ ct: roundTextCt, t: roundTextT });
+        const resp = await axios.get(url);
+        const $ = cheerio.load(resp.data);
+
+        let result = [];
+
+        $(".js-home-matches-upcoming a.wf-module-item").each(async (index, match) => {
+            const isLive = $(match).find(".h-match-eta.mod-live").length > 0;
+
+            if (isLive) {
+                const teams = [];
+                const flags = [];
+                const scores = [];
+                const roundTexts = [];
+
+                $(match).find(".h-match-team").each((i, team) => {
+                    const teamName = $(team).find(".h-match-team-name").text().trim();
+                    const flagClass = $(team).find(".flag").attr("class") || "";
+                    const teamScore = $(team).find(".h-match-team-score").text().trim();
+
+                    teams.push(teamName);
+                    flags.push(
+                        flagClass
+                            .replace(" mod-", "")
+                            .replace("16", "_")
+                            .replace("flag ", "")
+                    );
+                    scores.push(teamScore);
+
+                    const roundInfoCt = $(team).find(".h-match-team-rounds .mod-ct");
+                    const roundInfoT = $(team).find(".h-match-team-rounds .mod-t");
+                    const roundTextCt = roundInfoCt.length ? roundInfoCt.text().trim() : "N/A";
+                    const roundTextT = roundInfoT.length ? roundInfoT.text().trim() : "N/A";
+                    roundTexts.push({ ct: roundTextCt, t: roundTextT });
+                });
+
+                const eta = "LIVE";
+                const matchEvent = $(match).find(".h-match-preview-event").text().trim();
+                const matchSeries = $(match).find(".h-match-preview-series").text().trim();
+                const timestamp = DateTime.fromSeconds(parseInt($(match).find(".moment-tz-convert").attr("data-utc-ts")), { zone: 'utc' }).toFormat('yyyy-MM-dd HH:mm:ss');
+                const urlPath = "https://www.vlr.gg" + $(match).attr("href");
+
+                // Fetch additional details from the match page
+                const matchPage = await axios.get(urlPath);
+                const matchHtml = cheerio.load(matchPage.data);
+                const currentMapElement = matchHtml(".vm-stats-gamesnav-item.js-map-switch.mod-active.mod-live");
+                let currentMap = "Unknown";
+                let mapNumber = "Unknown";
+                if (currentMapElement.length) {
+                    currentMap = currentMapElement.find("div").text().trim().replace(/\n|\t/g, "").replace(/^\d+/, "");
+                    const mapNumberMatch = currentMapElement.find("div").text().trim().replace(/\n|\t/g, "").match(/^\d+/);
+                    mapNumber = mapNumberMatch ? mapNumberMatch[0] : "Unknown";
+                }
+
+                const team1RoundCt = roundTexts[0] ? roundTexts[0].ct : "N/A";
+                const team1RoundT = roundTexts[0] ? roundTexts[0].t : "N/A";
+                const team2RoundCt = roundTexts[1] ? roundTexts[1].ct : "N/A";
+                const team2RoundT = roundTexts[1] ? roundTexts[1].t : "N/A";
+
+                result.push({
+                    team1: teams[0] || "Unknown",
+                    team2: teams[1] || "Unknown",
+                    flag1: flags[0] || "Unknown",
+                    flag2: flags[1] || "Unknown",
+                    score1: scores[0] || "N/A",
+                    score2: scores[1] || "N/A",
+                    team1_round_ct: team1RoundCt,
+                    team1_round_t: team1RoundT,
+                    team2_round_ct: team2RoundCt,
+                    team2_round_t: team2RoundT,
+                    map_number: mapNumber,
+                    current_map: currentMap,
+                    time_until_match: eta,
+                    match_event: matchEvent,
+                    match_series: matchSeries,
+                    unix_timestamp: timestamp,
+                    match_page: urlPath,
+                });
+            }
         });
-  
-        const eta = $(firstItem).find(".h-match-eta").text().trim();
-        const etaWithSuffix = eta !== "LIVE" ? eta + " from now" : eta;
-        const roundsInfo = $(firstItem)
-          .find(".h-match-preview-event")
-          .text()
-          .trim();
-        const tournament = $(firstItem)
-          .find(".h-match-preview-series")
-          .text()
-          .trim();
-        const timestamp = parseInt(
-          $(firstItem).find(".moment-tz-convert").attr("data-utc-ts")
-        );
-        const urlPath = url + "/" + $(firstItem).attr("href");
-  
-        result.push({
-          team1: teams[0],
-          team2: teams[1],
-          flag1: flags[0],
-          flag2: flags[1],
-          score1: scores[0],
-          score2: scores[1],
-          team1_round_ct: roundTexts[0]["ct"],
-          team1_round_t: roundTexts[0]["t"],
-          team2_round_ct: roundTexts[1]["ct"],
-          team2_round_t: roundTexts[1]["t"],
-          time_until_match: etaWithSuffix,
-          round_info: roundsInfo,
-          tournament_name: tournament,
-          unix_timestamp: timestamp,
-          match_page: urlPath,
-        });
-      }
-  
-      const segments = { status: resp.status, segments: result };
-      const data = { live_score: segments };
-  
-      if (resp.status !== 200) {
-        throw new Error(`API response: ${resp.status}`);
-      }
-      return data;
-  
+
+        const segments = { status: resp.status, segments: result };
+        const data = { data: segments };
+
+        if (resp.status !== 200) {
+            throw new Error(`API response: ${resp.status}`);
+        }
+
+        return data;
+
     } catch (error) {
-      console.error("Error:", error);
-      throw error; // Re-throw the error
+        console.error("Error:", error);
+        throw error;
     }
-  }
+}
 export { scrapePlayers, scrapeTeams, scrapeEvents, scrapeEvent, scrapeUpcomingMatches, scrapeMatchResults, scrapeMatch, scrapeLiveScore, };
 //# sourceMappingURL=vlr-scraper.js.map

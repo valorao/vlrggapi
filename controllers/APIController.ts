@@ -31,8 +31,8 @@ const getMatch = async (req: Request, res: Response) => {
     res.status(200).json(match);
 };
 const getLiveScore = async (req: Request, res: Response) => {
-    const LiveScore = await scrapeLiveScore();
-    res.status(200).json(LiveScore);
+    console.log(await scrapeLiveScore())
+    res.status(200).json(await scrapeLiveScore());
 }
 export { getRankings, getPlayers, getEvents, getEvent, getUpcomingMatches, getMatchResults, getMatch, getLiveScore, };
 //# sourceMappingURL=controller.js.map
